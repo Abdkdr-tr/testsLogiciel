@@ -13,13 +13,13 @@ public class VoitureTest {
     public void creerVoiture(){
         Voiture voiture = new Voiture("Toyota", 10000);
         assertEquals(voiture.getMarque(), "Toyota", "Marque Ok");
-        assertEquals(voiture.getPrix, 10000, "Prix Ok");
+        assertEquals(voiture.getPrix(), 10000, "Prix Ok");
 
         voiture.setId(13);
         assertEquals(voiture.getId(), 13, "Id Ok");
 
         voiture.toString();
-        
+    
     }
 
 }
