@@ -41,4 +41,19 @@ class WebTests {
             .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath("$.prixMoyen").value("5000"));
     }
 
+    @Test
+    public void testAjouterVoiture() throws Exception {
+        // On configure l'environnement pour qu'il accepte l'ajout
+        org.mockito.Mockito.doNothing().when(statistiqueImpl).ajouter(org.mockito.Mockito.any(Voiture.class));
+
+        // On simule cette fois-ci la requête POST
+        String donnee_Json = "{\"marque\":\"f\",\"prix\":100}";
+
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/voiture")
+                .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+                .content(donnee_Json))
+            .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
+            .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk());
+    }
+
 }
