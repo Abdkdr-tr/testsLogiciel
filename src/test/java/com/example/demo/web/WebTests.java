@@ -27,4 +27,18 @@ class WebTests {
     @Autowired
     MockMvc mockMvc;
 
+    @Test
+    public void testGetStatistiques() throws Exception {
+        // On prépare l'enironnement
+        Echantillon fauxEchantillon = new Echantillon(1,5000);
+        org.mockito.Mockito.when(statistiqueImpl.prixMoyen()).thenReturn(fauxEchantillon);
+
+        // On simule la requête GET
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/statistique"))
+            .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
+            .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.status().isOk())
+            .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath("$.nombreDeVoitures").value("1"))
+            .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath("$.prixMoyen").value("5000"));
+    }
+
 }
