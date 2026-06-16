@@ -8,12 +8,16 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @SpringBootTest
-public class StatistiqueTests {
+class StatistiqueTests {
 
-    @MockBean
-    StatistiqueImpl statistiqueImpl;
+	@MockBean
+	StatistiqueImpl statistiqueImpl;
+
+	@Test
+	public void avecMockito() throws Exception {
+        Voiture v1 = new Voiture("Tesla", 2000);
+        Voiture v2 = new Voiture("Toyota", 4000);
 
     @Test
     public void avecMokito() throws Exception {
